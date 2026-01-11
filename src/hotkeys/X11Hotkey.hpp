@@ -13,6 +13,8 @@
 #include <xcb/xcb.h>
 #include <xcb/xcb_keysyms.h>
 
+#include "HotkeyManager.hpp"
+
 namespace ShareY {
 
 class HotkeyManager;
@@ -20,7 +22,7 @@ class HotkeyManager;
 /**
  * X11-specific hotkey implementation
  */
-class X11Hotkey : public QThread {
+class X11Hotkey : public QThread, public HotkeyBackend {
   Q_OBJECT
 
 public:

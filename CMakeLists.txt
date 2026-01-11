@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Find Qt6
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets DBus)
 
 # Find XCB libraries for X11 capture
 find_package(PkgConfig REQUIRED)
@@ -30,9 +30,11 @@ set(SOURCES
     src/core/ScreenshotBuffer.cpp
     src/capture/CaptureEngine.cpp
     src/capture/X11Capture.cpp
+    src/capture/PortalCapture.cpp
     src/hotkeys/HotkeyManager.cpp
     src/hotkeys/X11Hotkey.cpp
     src/ui/MainWindow.cpp
+    src/ui/FlowLayout.cpp
     src/ui/ThumbnailWidget.cpp
     src/ui/RegionSelector.cpp
 )
@@ -42,9 +44,11 @@ set(HEADERS
     src/core/ScreenshotBuffer.hpp
     src/capture/CaptureEngine.hpp
     src/capture/X11Capture.hpp
+    src/capture/PortalCapture.hpp
     src/hotkeys/HotkeyManager.hpp
     src/hotkeys/X11Hotkey.hpp
     src/ui/MainWindow.hpp
+    src/ui/FlowLayout.hpp
     src/ui/ThumbnailWidget.hpp
     src/ui/RegionSelector.hpp
 )
@@ -70,6 +74,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
+    Qt6::DBus
     ${XCB_LIBRARIES}
 )
 

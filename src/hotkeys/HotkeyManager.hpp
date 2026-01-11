@@ -16,9 +16,18 @@
 namespace ShareY {
 
 /**
- * Abstract hotkey backend
+ * Abstract hotkey backend interface
  */
-class HotkeyBackend;
+class HotkeyBackend {
+public:
+    virtual ~HotkeyBackend() = default;
+    
+    virtual bool registerHotkey(const QString &keySequence) = 0;
+    virtual void unregisterHotkey(const QString &keySequence) = 0;
+    virtual void unregisterAll() = 0;
+    virtual bool start() = 0;
+    virtual void stop() = 0;
+};
 
 /**
  * Global hotkey manager
@@ -89,6 +98,7 @@ private:
   bool m_running{false};
 
   friend class HotkeyBackend;
+  friend class X11Hotkey;
   void onHotkeyPressed(const QString &keySequence);
 };
 

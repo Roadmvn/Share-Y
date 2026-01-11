@@ -7,7 +7,9 @@
 #include <QCloseEvent>
 #include <QDebug>
 #include <QFileDialog>
-#include <QFlowLayout>
+#include <QFileDialog>
+#include "FlowLayout.hpp"
+#include <QHBoxLayout>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QMenuBar>
@@ -60,7 +62,7 @@ void MainWindow::setupUI() {
   m_thumbnailContainer->setObjectName("thumbnailContainer");
 
   // Flow layout for thumbnails (wraps automatically)
-  auto *layout = new QHBoxLayout(m_thumbnailContainer);
+  auto *layout = new FlowLayout(m_thumbnailContainer);
   layout->setSpacing(10);
   layout->setContentsMargins(10, 10, 10, 10);
   layout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
@@ -187,19 +189,19 @@ void MainWindow::setupToolBar() {
   toolBar->setMovable(false);
   toolBar->setIconSize(QSize(24, 24));
 
-  QAction *fullscreenAction = toolBar->addAction("📷 Fullscreen");
+  QAction *fullscreenAction = toolBar->addAction("Fullscreen");
   connect(fullscreenAction, &QAction::triggered, this,
           &MainWindow::captureFullscreen);
 
-  QAction *regionAction = toolBar->addAction("✂️ Region");
+  QAction *regionAction = toolBar->addAction("Region");
   connect(regionAction, &QAction::triggered, this, &MainWindow::captureRegion);
 
-  QAction *windowAction = toolBar->addAction("🪟 Window");
+  QAction *windowAction = toolBar->addAction("Window");
   connect(windowAction, &QAction::triggered, this, &MainWindow::captureWindow);
 
   toolBar->addSeparator();
 
-  QAction *clearAction = toolBar->addAction("🗑️ Clear All");
+  QAction *clearAction = toolBar->addAction("Clear All");
   connect(clearAction, &QAction::triggered, this, &MainWindow::clearAll);
 }
 

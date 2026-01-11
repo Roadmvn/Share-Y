@@ -1,8 +1,9 @@
 #include "CaptureEngine.hpp"
 #include "X11Capture.hpp"
-// #include "WaylandCapture.hpp"  // TODO: Implement
+#include "PortalCapture.hpp"
 
 #include <cstdlib>
+#include <cstring>
 
 namespace ShareY {
 
@@ -10,23 +11,29 @@ std::unique_ptr<CaptureEngine> CaptureEngine::create() {
   // Check session type
   const char *sessionType = std::getenv("XDG_SESSION_TYPE");
 
-  // Try X11 first (works in most cases, even on Wayland with XWayland)
+  // On Wayland, use Portal-based capture (gnome-screenshot/grim)
+  if (sessionType && std::strcmp(sessionType, "wayland") == 0) {
+    auto portal = std::make_unique<PortalCapture>();
+    if (portal->initialize()) {
+      return portal;
+    }
+  }
+
+  // Try X11 (works on X11 and sometimes on XWayland)
   auto x11 = std::make_unique<X11Capture>();
   if (x11->initialize()) {
     return x11;
   }
 
-  // TODO: Try Wayland portal
-  // if (sessionType && std::string(sessionType) == "wayland") {
-  //     auto wayland = std::make_unique<WaylandCapture>();
-  //     if (wayland->initialize()) {
-  //         return wayland;
-  //     }
-  // }
+  // Fallback: try Portal even on X11 if X11 capture failed
+  auto portal = std::make_unique<PortalCapture>();
+  if (portal->initialize()) {
+    return portal;
+  }
 
-  // Fallback: return uninitialized X11 engine
-  // Caller should check isReady()
+  // Return uninitialized engine - caller should check isReady()
   return x11;
 }
 
 } // namespace ShareY
+

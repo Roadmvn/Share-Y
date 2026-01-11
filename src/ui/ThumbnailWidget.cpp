@@ -132,23 +132,23 @@ void ThumbnailWidget::contextMenuEvent(QContextMenuEvent *event) {
         }
     )");
 
-  QAction *copyAction = menu.addAction("📋 Copy to Clipboard");
+  QAction *copyAction = menu.addAction("Copy to Clipboard");
   connect(copyAction, &QAction::triggered, this,
           [this]() { emit copyRequested(m_id); });
 
-  QAction *saveAction = menu.addAction("💾 Save to File...");
+  QAction *saveAction = menu.addAction("Save to File...");
   connect(saveAction, &QAction::triggered, this,
           [this]() { emit saveRequested(m_id); });
 
   menu.addSeparator();
 
-  QAction *editAction = menu.addAction("✏️ Edit/Annotate");
+  QAction *editAction = menu.addAction("Edit/Annotate");
   connect(editAction, &QAction::triggered, this,
           [this]() { emit editRequested(m_id); });
 
   menu.addSeparator();
 
-  QAction *deleteAction = menu.addAction("🗑️ Delete");
+  QAction *deleteAction = menu.addAction("Delete");
   connect(deleteAction, &QAction::triggered, this,
           [this]() { emit deleteRequested(m_id); });
 

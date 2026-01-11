@@ -83,11 +83,11 @@ int main(int argc, char *argv[]) {
     ShareY::HotkeyManager hotkeyManager;
     
     // Register default hotkeys
-    hotkeyManager.registerHotkey("PrintScreen", [&mainWindow]() {
+    hotkeyManager.registerHotkey("Ctrl+Alt+P", [&mainWindow]() {
         mainWindow.captureFullscreen();
     });
     
-    hotkeyManager.registerHotkey("Ctrl+PrintScreen", [&mainWindow]() {
+    hotkeyManager.registerHotkey("Ctrl+Alt+R", [&mainWindow]() {
         mainWindow.captureRegion();
     });
     
