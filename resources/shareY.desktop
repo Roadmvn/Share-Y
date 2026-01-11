@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ShareY
+Comment=Screenshot Manager for Linux
+Exec=shareY
+Icon=shareY
+Terminal=false
+Type=Application
+Categories=Utility;Graphics;
+Keywords=screenshot;capture;screen;
+StartupNotify=true

@@ -1,0 +1,38 @@
+# Build directory
+build/
+cmake-build-*/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Compiled
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+shareY
+
+# Qt generated
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.pro.user
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+# Packaging
+*.AppImage
+*.flatpak
+*.deb
+*.rpm
+*.tar.gz
