@@ -1,138 +1,86 @@
-# ShareY 📸
+# Share-Y 📸
 
-A lightweight, performant screenshot manager for Linux, inspired by ShareX for Windows.
+Un gestionnaire de captures d'écran léger pour Linux, inspiré de ShareX pour Windows.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)
-![Qt](https://img.shields.io/badge/Qt-6-green.svg)
+## ✨ Fonctionnalités
 
-## ✨ Features
+- **Capture d'écran**
+  - Plein écran
+  - Sélection de région
+  - Fenêtre active
 
-- **Screenshot Capture**
-  - Fullscreen capture
-  - Region selection with visual overlay
-  - Window capture
-  - Active window capture
-  
-- **In-Memory Storage**
-  - Screenshots stored in RAM (no disk writes until you save)
-  - Memory limit with automatic eviction of old captures
-  - Thumbnail dashboard for quick overview
+- **Stockage en mémoire**
+  - Captures stockées en RAM (pas d'écriture sur disque)
+  - Limite mémoire configurable (500 MB par défaut)
+  - Dashboard avec vignettes
 
-- **Clipboard Integration**
-  - Double-click to copy to clipboard
-  - Context menu for quick actions
+- **Intégration presse-papiers**
+  - Double-clic pour copier
+  - Menu contextuel rapide
 
 - **System Tray**
-  - Runs in background
-  - Quick access via tray menu
-  - Global hotkey support
+  - Tourne en arrière-plan
+  - Raccourcis globaux
 
-## 🔧 Requirements
-
-### Build Dependencies
+## 🔧 Installation
 
 ```bash
-# Debian/Ubuntu
-sudo apt install \
-    build-essential cmake ninja-build \
-    qt6-base-dev qt6-tools-dev \
-    libxcb1-dev libxcb-util-dev libxcb-keysyms1-dev \
-    libxcb-image0-dev libxcb-shm0-dev libxcb-xfixes0-dev
+# Installer les dépendances Python
+pip install -r requirements.txt
 
-# Arch Linux
-sudo pacman -S \
-    base-devel cmake ninja \
-    qt6-base qt6-tools \
-    libxcb xcb-util xcb-util-keysyms
-
-# Fedora
-sudo dnf install \
-    cmake ninja-build gcc-c++ \
-    qt6-qtbase-devel qt6-qttools-devel \
-    libxcb-devel xcb-util-devel xcb-util-keysyms-devel
+# Ou avec pip3
+pip3 install PyQt6 pynput Pillow
 ```
 
-## 🏗️ Building
+## 🚀 Utilisation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/shareY.git
-cd shareY
-
-# Create build directory
-mkdir build && cd build
-
-# Configure
-cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Release
-
-# Build
-ninja
-
-# Run
-./shareY
+# Lancer l'application
+python main.py
 ```
 
-## 🚀 Usage
+### Raccourcis clavier
 
-### Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `PrintScreen` | Capture fullscreen |
-| `Ctrl+PrintScreen` | Capture region |
-| `Alt+PrintScreen` | Capture window |
-| `Shift+PrintScreen` | Capture active window |
-| `Escape` | Hide window / Cancel |
+| Raccourci | Action |
+|-----------|--------|
+| `Ctrl+Alt+P` | Capture plein écran |
+| `Ctrl+Alt+R` | Capture région |
+| `Escape` | Cacher la fenêtre |
 
 ### Dashboard
 
-- **Single click** - Select screenshot
-- **Double click** - Copy to clipboard
-- **Right click** - Context menu (copy, save, delete, edit)
+- **Simple clic** - Sélectionner une capture
+- **Double clic** - Copier vers le presse-papiers
+- **Clic droit** - Menu contextuel (copier, sauvegarder, supprimer)
 
-## 📁 Project Structure
+## 📁 Structure du projet
 
 ```
-shareY/
-├── CMakeLists.txt          # Build configuration
+Share-Y/
+├── main.py              # Point d'entrée
+├── requirements.txt     # Dépendances
 ├── src/
-│   ├── main.cpp            # Application entry point
 │   ├── core/
-│   │   ├── Screenshot.hpp  # Screenshot data structure
-│   │   └── ScreenshotBuffer.hpp/cpp  # In-memory storage
+│   │   ├── screenshot.py   # Modèle Screenshot
+│   │   └── buffer.py       # Stockage en mémoire
 │   ├── capture/
-│   │   ├── CaptureEngine.hpp/cpp     # Abstract capture interface
-│   │   └── X11Capture.hpp/cpp        # XCB implementation
-│   ├── hotkeys/
-│   │   ├── HotkeyManager.hpp/cpp     # Global hotkey manager
-│   │   └── X11Hotkey.hpp/cpp         # X11 key grabbing
-│   └── ui/
-│       ├── MainWindow.hpp/cpp        # Dashboard window
-│       ├── ThumbnailWidget.hpp/cpp   # Screenshot thumbnail
-│       └── RegionSelector.hpp/cpp    # Region selection overlay
+│   │   └── capturer.py     # Capture via outils système
+│   ├── ui/
+│   │   ├── main_window.py  # Fenêtre principale
+│   │   ├── thumbnail.py    # Widget vignette
+│   │   └── flow_layout.py  # Layout fluide
+│   └── hotkeys/
+│       └── manager.py      # Gestionnaire de raccourcis
 └── resources/
-    ├── shareY.qrc          # Qt resources
-    ├── style.qss           # Stylesheet
-    └── icons/              # Application icons
+    └── icons/
 ```
-
-## 🔮 Roadmap
-
-- [ ] Annotation engine (arrows, rectangles, text, blur)
-- [ ] Wayland support via xdg-desktop-portal
-- [ ] Multi-monitor support with RANDR
-- [ ] Upload to services (Imgur, custom servers)
-- [ ] GIF recording
-- [ ] Settings dialog
-- [ ] AppImage/Flatpak packaging
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file.
+MIT License
 
-## 🙏 Acknowledgments
+## 🙏 Remerciements
 
-- Inspired by [ShareX](https://getsharex.com/) for Windows
-- Uses [Catppuccin Mocha](https://github.com/catppuccin/catppuccin) color scheme
-- Built with Qt6 and XCB
+- Inspiré par [ShareX](https://getsharex.com/)
+- Utilise le thème [Catppuccin Mocha](https://github.com/catppuccin/catppuccin)
+- Construit avec PyQt6
