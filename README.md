@@ -33,3 +33,7 @@ python main.py
 - PyQt6
 - pynput
 - flameshot or gnome-screenshot
+
+---
+
+Made by **Roadmvn**
