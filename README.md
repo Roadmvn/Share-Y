@@ -75,12 +75,3 @@ Share-Y/
     └── icons/
 ```
 
-## 📄 License
-
-MIT License
-
-## 🙏 Remerciements
-
-- Inspiré par [ShareX](https://getsharex.com/)
-- Utilise le thème [Catppuccin Mocha](https://github.com/catppuccin/catppuccin)
-- Construit avec PyQt6
