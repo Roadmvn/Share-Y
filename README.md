@@ -1,77 +1,35 @@
-# Share-Y 📸
+# Share-Y
 
-Un gestionnaire de captures d'écran léger pour Linux, inspiré de ShareX pour Windows.
+Screenshot tool for Linux. Like ShareX but simpler.
 
-## ✨ Fonctionnalités
-
-- **Capture d'écran**
-  - Plein écran
-  - Sélection de région
-  - Fenêtre active
-
-- **Stockage en mémoire**
-  - Captures stockées en RAM (pas d'écriture sur disque)
-  - Limite mémoire configurable (500 MB par défaut)
-  - Dashboard avec vignettes
-
-- **Intégration presse-papiers**
-  - Double-clic pour copier
-  - Menu contextuel rapide
-
-- **System Tray**
-  - Tourne en arrière-plan
-  - Raccourcis globaux
-
-## 🔧 Installation
+## Install
 
 ```bash
-# Installer les dépendances Python
 pip install -r requirements.txt
-
-# Ou avec pip3
-pip3 install PyQt6 pynput Pillow
 ```
 
-## 🚀 Utilisation
+## Run
 
 ```bash
-# Lancer l'application
+./run.sh
+# or
 python main.py
 ```
 
-### Raccourcis clavier
+## Shortcuts
 
-| Raccourci | Action |
-|-----------|--------|
-| `Ctrl+Alt+P` | Capture plein écran |
-| `Ctrl+Alt+R` | Capture région |
-| `Escape` | Cacher la fenêtre |
+- `Ctrl+Alt+P` - Fullscreen capture
+- `Ctrl+Alt+R` - Region capture
+- `Escape` - Hide window
 
-### Dashboard
+## Usage
 
-- **Simple clic** - Sélectionner une capture
-- **Double clic** - Copier vers le presse-papiers
-- **Clic droit** - Menu contextuel (copier, sauvegarder, supprimer)
+- Click thumbnail → Preview
+- Double-click → Copy to clipboard
+- Right-click → Save/Delete
 
-## 📁 Structure du projet
+## Dependencies
 
-```
-Share-Y/
-├── main.py              # Point d'entrée
-├── requirements.txt     # Dépendances
-├── src/
-│   ├── core/
-│   │   ├── screenshot.py   # Modèle Screenshot
-│   │   └── buffer.py       # Stockage en mémoire
-│   ├── capture/
-│   │   └── capturer.py     # Capture via outils système
-│   ├── ui/
-│   │   ├── main_window.py  # Fenêtre principale
-│   │   ├── thumbnail.py    # Widget vignette
-│   │   └── flow_layout.py  # Layout fluide
-│   └── hotkeys/
-│       └── manager.py      # Gestionnaire de raccourcis
-└── resources/
-    └── icons/
-```
-
+- PyQt6
+- pynput
+- flameshot or gnome-screenshot
